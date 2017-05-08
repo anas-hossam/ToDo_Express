@@ -1,0 +1,23 @@
+<% include ../partials/header.ejs %>
+<p> 
+    <a href="/users/new">SignUp</a>
+    <a href="/users/login">SignIn</a>
+</p>
+
+<p class="pull-right"> <a href="/users/logout">SignOut</a></p>
+<% if(person != null) {%>
+<p class="pull-right"> <a href="/users/<%= person._id %>/todolists/new">Add ToDO</a></p>
+<% } %>
+     <table class="table table-responsive table-bordered table-striped">
+         <tr>
+             <th>Id</th>
+             <th>Name</th>
+         </tr>
+         <% users.forEach(function(user){ %>
+         <tr>
+             <td><%= user._id %></td>
+             <td><%= user.email %></td>
+         </tr>
+         <% }) %>
+     </table>
+<% include ../partials/footer.ejs %>

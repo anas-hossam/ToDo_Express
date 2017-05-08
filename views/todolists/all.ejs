@@ -1,0 +1,24 @@
+<% include ../partials/header.ejs %>
+<% if(person != null){ %>
+<p> <a href="/users/<%= person._id %>/todolists/new">Add ToDO</a></p>
+<% } %>
+<% if(person == null){ %>
+<p class="pull-right text-lg"> <a href="/users/new">Register</a> | <a href="/users/login">Login</a></p>
+<% } %>
+     <table class="table table-responsive table-bordered table-striped">
+         <tr>
+             <th>UserID</th>
+             <th>Task ToDO</th>
+             <th>Status</th>
+         </tr>
+         <% todos.forEach(function(todo){ %>
+         <tr>
+             <% var email=""; if(todo._creator != null) email = todo._creator.email; %>
+             <td><%= email %></td>
+             <td><%= todo.title %></td>
+             <%  var status=""; if(todo.done == true){ status="Done"} else{ status="Pending" } %>
+             <td><%= status %></td>
+         </tr>
+         <% }) %>
+     </table>
+<% include ../partials/footer.ejs %>
